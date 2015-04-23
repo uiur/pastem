@@ -1,0 +1,24 @@
+{
+  "name": "gyazo-paste",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "gyazo-paste",
+  "icons": {
+    "16": "images/icon-16.png",
+    "128": "images/icon-128.png"
+  },
+  "default_locale": "en",
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "dist/content.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ]
+}

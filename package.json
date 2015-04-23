@@ -1,0 +1,15 @@
+{
+  "name": "gyazo-paste",
+  "version": "0.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "browserify": "^9.0.8",
+    "domready": "^1.0.7"
+  },
+  "scripts": {
+    "build": "browserify src/content.js > dist/content.js"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}
