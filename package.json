@@ -4,10 +4,12 @@
   "dependencies": {},
   "devDependencies": {
     "browserify": "^9.0.8",
-    "domready": "^1.0.7"
+    "domready": "^1.0.7",
+    "standard": "^3.7.0"
   },
   "scripts": {
-    "build": "browserify src/content.js > dist/content.js"
+    "build": "browserify src/content.js > dist/content.js",
+    "test": "standard src/**/*.js"
   },
   "engines": {
     "node": ">=0.10.0"
