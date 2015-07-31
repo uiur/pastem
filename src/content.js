@@ -2,6 +2,7 @@
 
 require('whatwg-fetch')
 var domready = require('domready')
+var endpoint = require('./lib/oembed-endpoint.js')
 
 if ((/github\.com/).test(window.location.hostname)) {
   domready(function () {
@@ -26,19 +27,17 @@ if ((/github\.com/).test(window.location.hostname)) {
           return
         }
 
-        if (!(/gyazo\.com\/[a-f0-9]+\/?$/).test(url.href)) {
-          return
-        }
-
         e.preventDefault()
 
-        window.fetch('https://api.gyazo.com/api/oembed/?url=' + window.encodeURIComponent(url))
+        window.fetch(endpoint(url) + '?url=' + url)
           .then(function (res) {
             return res.json()
           })
           .then(function (json) {
-            var directUrl = json.url
-            var markdown = '[![Gyazo](' + directUrl + ')](' + url + ')'
+            var imageURL = json.type === 'photo' ? json.url : json.thumbnail_url
+            var title = json.title || json.provider_name || ''
+
+            var markdown = '[![' + title + '](' + imageURL + ')](' + url + ')'
 
             replace(markdown)
           })

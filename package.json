@@ -8,12 +8,14 @@
     "browserify": "^9.0.8",
     "domready": "^1.0.7",
     "standard": "^3.7.0",
+    "tape": "^4.0.1",
     "watch": "^0.16.0",
     "watchify": "^3.3.1"
   },
   "scripts": {
     "build": "browserify src/content.js > dist/content.js",
-    "test": "standard src/**/*.js"
+    "test": "standard src/**/*.js && node test/**/*.js",
+    "watch": "watchify src/content.js -o dist/content.js &\nwatch 'bash reload.sh' dist/ &\nwait"
   },
   "engines": {
     "node": ">=0.10.0"
