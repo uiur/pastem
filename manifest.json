@@ -1,8 +1,8 @@
 {
-  "name": "gyazo-paste",
+  "name": "pastem",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "gyazo-paste",
+  "description": "pastem",
   "icons": {
     "16": "images/icon-16.png",
     "128": "images/icon-128.png"

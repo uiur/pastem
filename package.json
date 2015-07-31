@@ -1,5 +1,5 @@
 {
-  "name": "gyazo-paste",
+  "name": "pastem",
   "version": "0.0.0",
   "dependencies": {
     "whatwg-fetch": "^0.9.0"
