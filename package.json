@@ -6,7 +6,6 @@
   },
   "devDependencies": {
     "browserify": "^9.0.8",
-    "domready": "^1.0.7",
     "standard": "^3.7.0",
     "tape": "^4.0.1",
     "watch": "^0.16.0",
