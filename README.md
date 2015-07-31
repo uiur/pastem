@@ -9,6 +9,9 @@ For example, if you paste `http://gyazo.com/f02ef690f64fdba4eb3f321e72f17d61` in
 
 `[![Gyazo](https://i.gyazo.com/f02ef690f64fdba4eb3f321e72f17d61.png)](http://gyazo.com/f02ef690f64fdba4eb3f321e72f17d61)`
 
+## Install
+https://chrome.google.com/webstore/detail/pastem/ibmnfmdbnmihdjoegiodchoidmgpencc
+
 ## Development
 Run this command to build.
 ```
