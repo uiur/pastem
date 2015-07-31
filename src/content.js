@@ -1,11 +1,19 @@
 'use strict'
 
+require('whatwg-fetch')
 var domready = require('domready')
 
 if ((/github\.com/).test(window.location.hostname)) {
   domready(function () {
     document.addEventListener('paste', function (e) {
       var element = e.target
+
+      function replace (text) {
+        var val = element.value
+        var replacedText = val.substr(0, element.selectionStart) + text + val.substr(element.selectionEnd, val.length)
+        element.value = replacedText
+      }
+
       if (e.target.classList.contains('comment-form-textarea')) {
         var input = e.clipboardData.getData('text/plain')
 
@@ -22,22 +30,18 @@ if ((/github\.com/).test(window.location.hostname)) {
           return
         }
 
-        var id = url.pathname.slice(1)
-
-        var directUrl = 'https://i.gyazo.com/' + id + '.png'
-        var permalinkUrl = 'http://gyazo.com/' + id
-
-        var markdown = '[![Gyazo](' + directUrl + ')](' + permalinkUrl + ')'
-
         e.preventDefault()
 
-        var replace = function (text) {
-          var val = element.value
-          var replacedText = val.substr(0, element.selectionStart) + text + val.substr(element.selectionEnd, val.length)
-          element.value = replacedText
-        }
+        window.fetch('https://api.gyazo.com/api/oembed/?url=' + window.encodeURIComponent(url))
+          .then(function (res) {
+            return res.json()
+          })
+          .then(function (json) {
+            var directUrl = json.url
+            var markdown = '[![Gyazo](' + directUrl + ')](' + url + ')'
 
-        replace(markdown)
+            replace(markdown)
+          })
       }
     })
   })
