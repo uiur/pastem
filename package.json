@@ -7,7 +7,9 @@
   "devDependencies": {
     "browserify": "^9.0.8",
     "domready": "^1.0.7",
-    "standard": "^3.7.0"
+    "standard": "^3.7.0",
+    "watch": "^0.16.0",
+    "watchify": "^3.3.1"
   },
   "scripts": {
     "build": "browserify src/content.js > dist/content.js",
