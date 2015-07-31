@@ -21,10 +21,10 @@ if ((/github\.com/).test(window.location.hostname)) {
     if (!isUrl(input)) return
     var url = input
 
-    e.preventDefault()
-
     var endpointUrl = endpoint(url)
     if (!endpointUrl) return
+
+    e.preventDefault()
 
     window.fetch(endpointUrl + '?url=' + url)
       .then(function (res) {
