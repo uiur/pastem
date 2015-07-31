@@ -11,5 +11,11 @@ For example, if you paste `http://gyazo.com/f02ef690f64fdba4eb3f321e72f17d61` in
 
 It works only for gyazo.com links, but I think this idea also works for other sites' links.
 
+## Development
+Run this command to build.
+```
+npm run build
+```
+
 ## License
 MIT
