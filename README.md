@@ -1,5 +1,5 @@
 # pastem
-[![Build Status](https://travis-ci.org/uiureo/gyazo-paste.svg?branch=master)](https://travis-ci.org/uiureo/gyazo-paste)
+[![Build Status](https://travis-ci.org/uiureo/pastem.svg?branch=master)](https://travis-ci.org/uiureo/pastem)
 
 A chrome extension that converts a url to embeded markdown on paste.
 
