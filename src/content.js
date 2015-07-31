@@ -2,10 +2,13 @@
 
 require('whatwg-fetch')
 var endpoint = require('./lib/oembed-endpoint.js')
+var isUrl = require('is-url')
 
 if ((/github\.com/).test(window.location.hostname)) {
   document.addEventListener('paste', function (e) {
     var element = e.target
+
+    if (!element.classList.contains('comment-form-textarea')) return
 
     function replace (text) {
       var val = element.value
@@ -13,32 +16,27 @@ if ((/github\.com/).test(window.location.hostname)) {
       element.value = replacedText
     }
 
-    if (e.target.classList.contains('comment-form-textarea')) {
-      var input = e.clipboardData.getData('text/plain')
+    var input = e.clipboardData.getData('text/plain')
 
-      var url = null
+    if (!isUrl(input)) return
+    var url = input
 
-      try {
-        url = new window.URL(input)
-      } catch(e) {
-        console.log(e)
-        return
-      }
+    e.preventDefault()
 
-      e.preventDefault()
+    var endpointUrl = endpoint(url)
+    if (!endpointUrl) return
 
-      window.fetch(endpoint(url) + '?url=' + url)
-        .then(function (res) {
-          return res.json()
-        })
-        .then(function (json) {
-          var imageURL = json.type === 'photo' ? json.url : json.thumbnail_url
-          var title = json.title || json.provider_name || ''
+    window.fetch(endpointUrl + '?url=' + url)
+      .then(function (res) {
+        return res.json()
+      })
+      .then(function (json) {
+        var imageUrl = json.type === 'photo' ? json.url : json.thumbnail_url
+        var title = json.title || json.provider_name || ''
 
-          var markdown = '[![' + title + '](' + imageURL + ')](' + url + ')'
+        var markdown = '[![' + title + '](' + imageUrl + ')](' + url + ')'
 
-          replace(markdown)
-        })
-    }
+        replace(markdown)
+      })
   })
 }
