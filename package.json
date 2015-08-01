@@ -1,6 +1,6 @@
 {
   "name": "pastem",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "dependencies": {
     "is-url": "^1.2.1",
     "whatwg-fetch": "^0.9.0"
