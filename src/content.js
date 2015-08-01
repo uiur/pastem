@@ -4,6 +4,16 @@ require('whatwg-fetch')
 var endpoint = require('./lib/oembed-endpoint.js')
 var isUrl = require('is-url')
 
+function checkStatus (res) {
+  if (res.status >= 200 && res.status < 300) {
+    return res
+  } else {
+    var err = new Error(res.statusText)
+    err.response = res
+    throw err
+  }
+}
+
 if ((/github\.com/).test(window.location.hostname)) {
   document.addEventListener('paste', function (e) {
     var element = e.target
@@ -27,6 +37,7 @@ if ((/github\.com/).test(window.location.hostname)) {
     e.preventDefault()
 
     window.fetch(endpointUrl + '?url=' + url)
+      .then(checkStatus)
       .then(function (res) {
         return res.json()
       })
@@ -37,6 +48,8 @@ if ((/github\.com/).test(window.location.hostname)) {
         var markdown = '[![' + title + '](' + imageUrl + ')](' + url + ')'
 
         replace(markdown)
+      }).catch(function () {
+        replace(url)
       })
   })
 }
