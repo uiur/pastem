@@ -4,7 +4,6 @@
   "manifest_version": 2,
   "description": "pastem",
   "icons": {
-    "16": "images/icon-16.png",
     "128": "images/icon-128.png"
   },
   "content_scripts": [
