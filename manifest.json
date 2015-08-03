@@ -2,7 +2,7 @@
   "name": "pastem",
   "version": "0.0.2",
   "manifest_version": 2,
-  "description": "pastem",
+  "description": "Pastes embedded markdown automagically.",
   "icons": {
     "128": "images/icon-128.png"
   },
