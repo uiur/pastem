@@ -7,6 +7,7 @@
   },
   "devDependencies": {
     "browserify": "^9.0.8",
+    "concat-stream": "^1.5.0",
     "standard": "^3.7.0",
     "tape": "^4.0.1",
     "watch": "^0.16.0",
