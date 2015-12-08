@@ -14,11 +14,30 @@ function checkStatus (res) {
   }
 }
 
-if ((/github\.com/).test(window.location.hostname)) {
+var sites = {
+  github: {
+    host: /github\.com/,
+    className: 'comment-form-textarea'
+  },
+  qiita: {
+    host: /qiita\.com/,
+    className: 'editorMarkdown_textarea'
+  }
+}
+
+Object.keys(sites).find((site) => {
+  if (sites[site].host.test(window.location.hostname)) {
+    setupListener(sites[site].className)
+
+    return true
+  }
+})
+
+function setupListener (className) {
   document.addEventListener('paste', function (e) {
     var element = e.target
 
-    if (!element.classList.contains('comment-form-textarea')) return
+    if (!element.classList.contains(className)) return
 
     function replace (text) {
       var val = element.value
