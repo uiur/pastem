@@ -121,6 +121,7 @@
   ],
   "https://api.gyazo.com/api/oembed": [
     "http://gyazo.com/*",
-    "https://gyazo.com/*"
+    "https://gyazo.com/*",
+    "https://*.gyazo.com/*"
   ]
 }
